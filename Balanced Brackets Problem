@@ -1,0 +1,40 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string s;
+    cout << "Enter a string'(', ')', '{', '}', '[' and ']': ";
+    cin >> s;
+
+    int roundB = 0, curlyB = 0, squareB = 0;
+
+    for (char c : s) {
+        if (c == '(') {
+            roundB++;
+        } else if (c == ')') {
+            roundB--;
+        } else if (c == '{') {
+            curlyB++;
+        } else if (c == '}') {
+            curlyB--;
+        } else if (c == '[') {
+            squareB++;
+        } else if (c == ']') {
+            squareB--;
+        }
+
+        if (roundB < 0 || curlyB < 0 || squareB < 0) {
+            cout << "False" << endl;
+            return 0;
+        }
+    }
+
+    if (roundB == 0 && curlyB == 0 && squareB == 0) {
+        cout << "True" << endl;
+    } else {
+        cout << "False" << endl;
+    }
+
+    return 0;
+}
