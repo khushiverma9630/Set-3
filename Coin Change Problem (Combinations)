@@ -1,0 +1,31 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int sum, N;
+    cout << "Enter the target sum: ";
+    cin >> sum;
+    
+    cout << "Enter the number of coin types: ";
+    cin >> N;
+    
+    vector<int> coins(N);
+    cout << "Enter the coin denominations: ";
+    for (int i = 0; i < N; i++) {
+        cin >> coins[i];
+    }
+
+    vector<int> dp(sum + 1, 0);
+    dp[0] = 1;
+
+    for (int coin : coins) {
+        for (int i = coin; i <= sum; i++) {
+            dp[i] += dp[i - coin];
+        }
+    }
+
+    cout << "The number of ways to make the sum " << sum << " is: " << dp[sum] << endl;
+
+    return 0;
+}
