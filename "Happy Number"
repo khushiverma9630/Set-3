@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Enter a number: ";
+    cin >> n;
+
+    int slow = n, fast = n;
+
+    do {
+        int temp = slow, sum = 0;
+        while (temp > 0) {
+            int digit = temp % 10;
+            sum += digit * digit;
+            temp /= 10;
+        }
+        slow = sum;
+
+        temp = fast, sum = 0;
+        while (temp > 0) {
+            int digit = temp % 10;
+            sum += digit * digit;
+            temp /= 10;
+        }
+        fast = sum;
+
+        temp = fast, sum = 0;
+        while (temp > 0) {
+            int digit = temp % 10;
+            sum += digit * digit;
+            temp /= 10;
+        }
+        fast = sum;
+
+    } while (slow != fast);
+
+    if (slow == 1)
+        cout << "True (Happy Number)" << endl;
+    else
+        cout << "False (Not a Happy Number)" << endl;
+
+    return 0;
+}
