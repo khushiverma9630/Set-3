@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+int main() {
+    int n, count = 0;
+    cin >> n;
+    for (int i = 2; i <= n; i++) {
+        if (n % i == 0) {
+            bool isSquareFree = true;
+            for (int j = 2; j * j <= i; j++) {
+                if (i % (j * j) == 0) {
+                    isSquareFree = false;
+                    break;
+                }
+            }
+            if (isSquareFree) count++;
+        }
+    }
+    cout << count << endl;
+    return 0;
+}
