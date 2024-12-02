@@ -1,0 +1,74 @@
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <string>
+using namespace std;
+
+int main() {
+    int N;
+    cin >> N;  // Read number of elements
+    vector<int> arr(N);
+    
+    for (int i = 0; i < N; i++) {
+        cin >> arr[i];  // Read each number
+    }
+    
+    int D = 0;
+    
+    string text[] = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", 
+                     "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", 
+                     "eighteen", "nineteen", "twenty", "twentyone", "twentytwo", "twentythree", "twentyfour", 
+                     "twentyfive", "twentysix", "twentyseven", "twentyeight", "twentynine", "thirty", "thirtyone", 
+                     "thirtytwo", "thirtythree", "thirtyfour", "thirtyfive", "thirtysix", "thirtyseven", "thirtyeight", 
+                     "thirtynine", "forty", "fortyone", "fortytwo", "fortythree", "fortyfour", "fortyfive", "fortysix", 
+                     "fortyseven", "fortyeight", "fortynine", "fifty", "fiftyone", "fiftytwo", "fiftythree", "fiftyfour", 
+                     "fiftyfive", "fiftysix", "fiftyseven", "fiftyeight", "fiftynine", "sixty", "sixtyone", "sixtytwo", 
+                     "sixtythree", "sixtyfour", "sixtyfive", "sixtysix", "sixtyseven", "sixtyeight", "sixtynine", 
+                     "seventy", "seventyone", "seventytwo", "seventythree", "seventyfour", "seventyfive", "seventysix", 
+                     "seventyseven", "seventyeight", "seventynine", "eighty", "eightyone", "eightytwo", "eightythree", 
+                     "eightyfour", "eightyfive", "eightysix", "eightyseven", "eightyeight", "eightynine", "ninety", 
+                     "ninetyone", "ninetytwo", "ninetythree", "ninetyfour", "ninetyfive", "ninetysix", "ninetyseven", 
+                     "ninetyeight", "ninetynine", "hundred"};
+    
+    for (int num : arr) {
+        string word = text[num];
+        int vowels = 0;
+        for (char c : word) {
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+                vowels++;
+            }
+        }
+        D += vowels;
+    }
+    
+    unordered_map<int, int> freq;
+    int pairCount = 0;
+    
+    for (int num : arr) {
+        pairCount += freq[D - num];
+        freq[num]++;
+    }
+    
+    if (pairCount > 100) {
+        cout << "greater 100" << endl;
+    } else {
+        string pairCountText[] = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+                                  "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen",
+                                  "eighteen", "nineteen", "twenty", "twenty one", "twenty two", "twenty three", "twenty four", 
+                                  "twenty five", "twenty six", "twenty seven", "twenty eight", "twenty nine", "thirty", 
+                                  "thirty one", "thirty two", "thirty three", "thirty four", "thirty five", "thirty six", 
+                                  "thirty seven", "thirty eight", "thirty nine", "forty", "forty one", "forty two", "forty three", 
+                                  "forty four", "forty five", "forty six", "forty seven", "forty eight", "forty nine", "fifty", 
+                                  "fifty one", "fifty two", "fifty three", "fifty four", "fifty five", "fifty six", "fifty seven", 
+                                  "fifty eight", "fifty nine", "sixty", "sixty one", "sixty two", "sixty three", "sixty four", 
+                                  "sixty five", "sixty six", "sixty seven", "sixty eight", "sixty nine", "seventy", "seventy one", 
+                                  "seventy two", "seventy three", "seventy four", "seventy five", "seventy six", "seventy seven", 
+                                  "seventy eight", "seventy nine", "eighty", "eighty one", "eighty two", "eighty three", 
+                                  "eighty four", "eighty five", "eighty six", "eighty seven", "eighty eight", "eighty nine", 
+                                  "ninety", "ninety one", "ninety two", "ninety three", "ninety four", "ninety five", 
+                                  "ninety six", "ninety seven", "ninety eight", "ninety nine", "hundred"};
+        cout << pairCountText[pairCount] << endl;
+    }
+
+    return 0;
+}
