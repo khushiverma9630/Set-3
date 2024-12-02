@@ -1,0 +1,23 @@
+#include <iostream>
+#include <string>
+#include <unordered_map>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        string s;
+        cin >> s;
+        unordered_map<char, int> freq;
+        for (char c : s) freq[c]++;
+        
+        int oddCount = 0;
+        for (auto &p : freq) {
+            if (p.second % 2 != 0) oddCount++;
+        }
+        
+        cout << (oddCount <= 1 ? "Yes" : "No") << endl;
+    }
+    return 0;
+}
