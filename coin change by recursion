@@ -1,0 +1,37 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int ways(int N, int sum, vector<int>& coins) {
+    if (sum == 0) {
+        return 1;
+    }
+    if (N == 0) {
+        return 0;
+    }
+    if (coins[N - 1] <= sum) {
+        return ways(N, sum - coins[N - 1], coins) + ways(N - 1, sum, coins);
+    } else {
+        return ways(N - 1, sum, coins);
+    }
+}
+
+int main() {
+    int N, sum;
+
+    cout << "Enter the target sum: ";
+    cin >> sum;
+
+    cout << "Enter the number of coin types: ";
+    cin >> N;
+
+    vector<int> coins(N);
+    cout << "Enter the coin denominations: ";
+    for (int i = 0; i < N; i++) {
+        cin >> coins[i];
+    }
+
+    cout << "The number of ways to make the sum " << sum << " is: " << ways(N, sum, coins) << endl;
+
+    return 0;
+}
