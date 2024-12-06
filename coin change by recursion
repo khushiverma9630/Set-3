@@ -10,7 +10,7 @@ int ways(int N, int sum, vector<int>& coins) {
         return 0;
     }
     if (coins[N - 1] <= sum) {
-        return ways(N, sum - coins[N - 1], coins) + ways(N - 1, sum, coins);
+        return ways(N, sum - coins[N - 1], coins) + ways(N - 1, sum, coins);// include and exclude
     } else {
         return ways(N - 1, sum, coins);
     }
